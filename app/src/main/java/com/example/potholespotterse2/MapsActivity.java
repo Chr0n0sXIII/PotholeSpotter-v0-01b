@@ -1,6 +1,5 @@
 package com.example.potholespotterse2;
 
-import android.location.Location;
 import android.os.Bundle;
 
 import androidx.fragment.app.FragmentActivity;
@@ -47,16 +46,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        Location location =  u_loc.getLocation(this);
-       /* CameraPosition camPos = new CameraPosition.Builder()
-                .target(new LatLng(location.getLatitude(), location.getLongitude()))
-                .zoom(18)
-                .bearing(location.getBearing())
-                .tilt(0)
-                .build();
-        CameraUpdate camUpd3 = CameraUpdateFactory.newCameraPosition(camPos);
-        mMap.animateCamera(camUpd3);
-*/
+
+        u_loc.updateUserLocation(this,mMap);
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
