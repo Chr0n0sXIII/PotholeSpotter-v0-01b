@@ -45,8 +45,10 @@ public class User_Location{
                 if (location != null) {
                     // Logic to handle location object
                 }
+
                 CameraPosition camPos = new CameraPosition.Builder()
                         .target(new LatLng(location.getLatitude(), location.getLongitude()))
+                        //.target(new LatLng( 10.3757, -61.2336))
                         .zoom(18)
                         .bearing(location.getBearing())
                         .tilt(0)
