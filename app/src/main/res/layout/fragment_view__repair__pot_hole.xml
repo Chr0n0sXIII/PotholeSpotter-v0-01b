@@ -61,6 +61,7 @@
                 android:id="@+id/button_Repair_Pothole"
                 android:layout_width="170dp"
                 android:layout_margin="5dp"
+                android:textStyle="bold"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/Green_Repair"
                 android:text="@string/button_Repair_Pothole" />
@@ -68,6 +69,7 @@
             <Button
                 android:id="@+id/button_View_Pothole"
                 android:layout_width="170dp"
+                android:textStyle="bold"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:backgroundTint="@color/Blue_View"
