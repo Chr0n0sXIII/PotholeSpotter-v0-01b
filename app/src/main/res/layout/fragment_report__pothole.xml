@@ -28,6 +28,7 @@
         <Button
             android:id="@+id/button_Report_Pothole"
             android:layout_margin="10dp"
+            android:textColor="@color/white"
             android:textStyle="bold"
             android:textSize="20dp"
             android:layout_width="match_parent"
