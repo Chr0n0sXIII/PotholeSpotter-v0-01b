@@ -1,7 +1,11 @@
 package com.example.potholespotterse2;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.AnimationDrawable;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
@@ -26,13 +30,17 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
-    private User_Location u_loc;
-    private Button button;
     private FusedLocationProviderClient fusedLocationClient;
+    private String[] address = new String[3];
+    private Fragment fragment;
 
 
     @Override
@@ -50,9 +58,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 getCurrentLocation();
             }
         });
-        loadFragment(new Report_Pothole());
+        fragment = new Report_Pothole();
         mapFragment.getMapAsync(this);
+    }
 
+    @Override
+    public void onStart(){
+        super.onStart();
+        getCurrentLocation();
     }
 
     private void getCurrentLocation() {
@@ -67,6 +80,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     double longitude = location.getLongitude();
                     double latitude = location.getLatitude();
                     updateCameraPosition(new LatLng(latitude, longitude), 15f);
+                    getAddress(MapsActivity.this,latitude,longitude);
+                    loadFragment(fragment);
                 }
             }
         });
@@ -75,6 +90,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void updateCameraPosition(LatLng latLng, float zoom) {
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
+    }
+
+    private String[] getAddress(Context context, double latitude, double longitude){
+        Geocoder geocoder = new Geocoder(context, Locale.getDefault());
+        try {
+            List<Address> addresses = geocoder.getFromLocation(latitude,longitude,1);
+            Address addressOBJ = addresses.get(0);
+            address = addressOBJ.getAddressLine(0).split(",",2);
+            if (addressOBJ.getSubLocality() != null)
+                address[1] = addressOBJ.getSubLocality();
+            else
+            {
+                String[] separate = addressOBJ.getAdminArea().split("/",2);
+                address[1] = separate[1];
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        return address;
     }
 
     /**
@@ -93,13 +127,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             return;
         }
         mMap.setMyLocationEnabled(true);
-        getCurrentLocation();
     }
 
     private void loadFragment(Fragment fragment){
+        Bundle bundle = new Bundle();
+        bundle.putStringArray("Info", address);
+        fragment.setArguments(bundle);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.frameLayout_Fragment_View, fragment);
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         fragmentTransaction.commit();
     }
+
 }
