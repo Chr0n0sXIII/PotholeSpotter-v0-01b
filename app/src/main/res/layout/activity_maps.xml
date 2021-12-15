@@ -26,4 +26,21 @@
         map:layout_constraintVertical_bias="0.644"
         map:srcCompat="@android:drawable/ic_menu_mylocation" />
 
+    <LinearLayout
+        android:background="@drawable/custom_border"
+        android:backgroundTint="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="vertical"
+        map:layout_constraintBottom_toBottomOf="parent"
+        map:layout_constraintStart_toStartOf="parent">
+
+        <FrameLayout
+            android:id="@+id/frameLayout_Fragment_View"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </FrameLayout>
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
