@@ -9,9 +9,9 @@
     tools:context=".Camera_Report">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageView_potHole_Report"
         android:layout_width="match_parent"
-        android:layout_height="446dp"
+        android:layout_height="325dp"
         android:scaleType="centerCrop"
         android:src="@drawable/pothole_temp" />
 
