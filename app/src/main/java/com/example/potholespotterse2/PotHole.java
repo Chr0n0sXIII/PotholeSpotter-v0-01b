@@ -1,19 +1,22 @@
 package com.example.potholespotterse2;
 
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 
 import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.ServerTimestamp;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 public class PotHole {
 
     private GeoPoint geoPoint;
     private String description;
-    private Bitmap pothole_Image;
+    //private List<Bitmap> pothole_Image;
     private int severity;
-    private String severity_Logo;
+    private int severity_Logo;
     private int repair_Status;
     private int repair_Condition;
     private int repair_Type;
@@ -25,10 +28,10 @@ public class PotHole {
 
     }
 
-    public PotHole(GeoPoint geoPoint, String description, Bitmap pothole_Image, int severity, String severity_Logo, int repair_Status, int repair_Condition, int repair_Type, Date date_Reported, Date date_Repaired){
+    public PotHole(GeoPoint geoPoint, String description,/* List<Bitmap> pothole_Image,*/ int severity, int severity_Logo, int repair_Status, int repair_Condition, int repair_Type, Date date_Reported, Date date_Repaired){
         this.geoPoint = geoPoint;
         this.description = description;
-        this.pothole_Image = pothole_Image;
+        //this.pothole_Image = pothole_Image;
         this.severity = severity;
         this.severity_Logo = severity_Logo;
         this.repair_Status = repair_Status;
@@ -45,16 +48,16 @@ public class PotHole {
     public String getDescription() {
         return description;
     }
-
-    public Bitmap getPothole_Image() {
+/*
+    public List<Bitmap> getPothole_Image() {
         return pothole_Image;
     }
-
+*/
     public int getSeverity() {
         return severity;
     }
 
-    public String getSeverity_Logo() {
+    public int getSeverity_Logo() {
         return severity_Logo;
     }
 
@@ -89,11 +92,11 @@ public class PotHole {
     public void setRepair_Type(int repair_Type) {
         this.repair_Type = repair_Type;
     }
-
-    public void setPothole_Image(Bitmap pothole_Image) {
+/*
+    public void setPothole_Image(List<Bitmap> pothole_Image) {
         this.pothole_Image = pothole_Image;
     }
-
+*/
     public void setDate_Repaired(Date date_Repaired) {
         this.date_Repaired = date_Repaired;
     }
