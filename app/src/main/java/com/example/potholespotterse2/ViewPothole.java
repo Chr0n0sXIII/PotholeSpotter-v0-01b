@@ -1,5 +1,6 @@
 package com.example.potholespotterse2;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,58 +8,58 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ViewPothole#newInstance} factory method to
- * create an instance of this fragment.
- */
+import org.w3c.dom.Text;
+
+
 public class ViewPothole extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public ViewPothole() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ViewPothole.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ViewPothole newInstance(String param1, String param2) {
-        ViewPothole fragment = new ViewPothole();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    MapsActivity m = new MapsActivity();
+    String[] data;
+    PotHole potHole;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_view_pothole, container, false);
+        View view =  inflater.inflate(R.layout.fragment_view_pothole, container, false);
+
+        TextView street = view.findViewById(R.id.textView_Street2);
+        TextView address = view.findViewById(R.id.textView_Address2);
+        TextView description = view.findViewById(R.id.textView_Description2);
+        TextView reportDate = view.findViewById(R.id.textView_report_date);
+        TextView repairDate = view.findViewById(R.id.textView_repair_date);
+        Button repairButton = view.findViewById(R.id.button_Repair_Pothole2);
+        potHole = m.getPotHole();
+        data = m.getAddress(getContext(),potHole.getGeoPoint().getLatitude(),potHole.getGeoPoint().getLongitude());
+        street.setText(data[0]);
+        address.setText(data[1]);
+        description.setText(potHole.getDescription());
+        reportDate.setText(potHole.getDate_Reported().toString());
+        if (potHole.getRepair_Status() != 0)
+            repairDate.setText(potHole.getDate_Repaired().toString());
+        else
+            repairButton.setText("Already Repaired, Return Home");
+        repairButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (potHole.getRepair_Status() != 0){
+
+                }
+                else {
+                    Intent intent = new Intent(getActivity(),SecondaryActivity.class);
+                    getActivity().startActivity(intent);
+                }
+            }
+        });
+
+        return view;
     }
 }

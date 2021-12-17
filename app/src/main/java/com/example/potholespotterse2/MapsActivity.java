@@ -58,7 +58,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private FusedLocationProviderClient fusedLocationClient;
     private String[] address = new String[4];
     private Fragment fragment;
-    private PotHole potHole;
+    private static PotHole potHole;
     private ArrayList<PotHole> ph = new ArrayList<>();
     private int image_icon;
     FirebaseFirestore db, dbQuery;
@@ -115,7 +115,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
     }
 
-    private String[] getAddress(Context context, double latitude, double longitude){
+    public String[] getAddress(Context context, double latitude, double longitude){
         Geocoder geocoder = new Geocoder(context, Locale.getDefault());
         try {
             List<Address> addresses = geocoder.getFromLocation(latitude,longitude,1);
@@ -224,4 +224,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         fragmentTransaction.commit();
     }
 
+    public PotHole getPotHole() {
+        return potHole;
+    }
 }

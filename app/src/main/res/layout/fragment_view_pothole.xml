@@ -58,6 +58,14 @@
                 android:layout_height="wrap_content"
                 android:text="TextView" />
 
+            <TextView
+                android:id="@+id/textView_repair_date"
+                android:textSize="17dp"
+                android:textColor="@color/Green_Repair"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="" />
+
             <Button
                 android:id="@+id/button_Repair_Pothole2"
                 android:textColor="@color/white"

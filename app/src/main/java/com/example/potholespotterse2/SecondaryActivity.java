@@ -16,8 +16,10 @@ public class SecondaryActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String check = intent.getStringExtra("key");
-        if (check.equals("Report"));
+        if (check.equals("Report"))
             loadFragment(new Camera_Report());
+        if (check.equals("View"))
+            loadFragment(new ViewPothole());
     }
 
     private void loadFragment(Fragment fragment){
