@@ -50,9 +50,16 @@ public class View_Repair_PotHole extends Fragment {
         repairButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),SecondaryActivity.class);
-                intent.putExtra("key","Repair");
-                getActivity().startActivity(intent);
+                if (data[4].equals("0")){
+                    Intent intent = new Intent(getActivity(),SecondaryActivity.class);
+                    intent.putExtra("key","Repair");
+                    getActivity().startActivity(intent);
+                }
+                else{
+                    Intent intent = new Intent(getActivity(),SecondaryActivity.class);
+                    intent.putExtra("key","View");
+                    getActivity().startActivity(intent);
+                }
             }
         });
 

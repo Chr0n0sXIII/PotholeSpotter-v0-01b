@@ -56,7 +56,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
     private FusedLocationProviderClient fusedLocationClient;
-    private String[] address = new String[4];
+    private String[] address = new String[5];
     private Fragment fragment;
     private static PotHole potHole;
     private ArrayList<PotHole> ph = new ArrayList<>();
@@ -179,6 +179,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         break;
                 }
                 address[3] = String.valueOf(potHole.getSeverity());
+                address[4] = String.valueOf(potHole.getRepair_Status());
                 loadFragment(new View_Repair_PotHole());
                 return false;
             }

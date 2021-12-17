@@ -16,7 +16,7 @@
         <ImageView
             android:id="@+id/imageView_potHole_Repair"
             android:layout_width="match_parent"
-            android:layout_height="372dp"
+            android:layout_height="345dp"
             android:scaleType="centerCrop"
             android:src="@drawable/pothole_fix" />
 

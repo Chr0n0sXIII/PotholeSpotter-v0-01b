@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -38,6 +39,7 @@ public class ViewPothole extends Fragment {
         TextView reportDate = view.findViewById(R.id.textView_report_date);
         TextView repairDate = view.findViewById(R.id.textView_repair_date);
         Button repairButton = view.findViewById(R.id.button_Repair_Pothole2);
+        ImageView picture = view.findViewById(R.id.imageView_potHole_View);
         potHole = m.getPotHole();
         data = m.getAddress(getContext(),potHole.getGeoPoint().getLatitude(),potHole.getGeoPoint().getLongitude());
         street.setText(data[0]);
@@ -47,6 +49,7 @@ public class ViewPothole extends Fragment {
         if (potHole.getRepair_Status() == 1 ){
             repairDate.setText(potHole.getDate_Repaired().toString());
             repairButton.setText("Already Repaired, Return Home");
+            picture.setImageResource(R.drawable.pothole_fix);
         }
         repairButton.setOnClickListener(new View.OnClickListener() {
             @Override
