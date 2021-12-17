@@ -39,6 +39,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -55,12 +56,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
     private FusedLocationProviderClient fusedLocationClient;
-    private String[] address = new String[3];
+    private String[] address = new String[4];
     private Fragment fragment;
     private PotHole potHole;
     private ArrayList<PotHole> ph = new ArrayList<>();
     private int image_icon;
-    FirebaseFirestore db;
+    FirebaseFirestore db, dbQuery;
 
 
     @Override
@@ -168,8 +169,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public boolean onMarkerClick(@NonNull Marker marker) {
                 LatLng latLng = marker.getPosition();
+                GeoPoint geoPoint = new GeoPoint(latLng.latitude,latLng.longitude);
                 getAddress(getApplicationContext(),latLng.latitude,latLng.longitude);
                 address[2] = marker.getTitle();
+                for (int i = 0; i < ph.size(); i++)
+                {
+                    potHole = ph.get(i);
+                    if (potHole.getGeoPoint().getLatitude() == geoPoint.getLatitude() && potHole.getGeoPoint().getLongitude() == geoPoint.getLongitude())
+                        break;
+                }
+                address[3] = String.valueOf(potHole.getSeverity());
                 loadFragment(new View_Repair_PotHole());
                 return false;
             }
