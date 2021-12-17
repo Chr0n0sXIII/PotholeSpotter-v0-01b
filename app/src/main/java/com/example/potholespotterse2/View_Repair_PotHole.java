@@ -1,5 +1,6 @@
 package com.example.potholespotterse2;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -43,6 +44,27 @@ public class View_Repair_PotHole extends Fragment {
                 severity.setImageResource(R.drawable.red_sad);
                 break;
         }
+        Button repairButton = view.findViewById(R.id.button_Repair_Pothole);
+        Button viewButton = view.findViewById(R.id.button_View_Pothole);
+
+        repairButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),SecondaryActivity.class);
+                intent.putExtra("key","Repair");
+                getActivity().startActivity(intent);
+            }
+        });
+
+        viewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),SecondaryActivity.class);
+                intent.putExtra("key","View");
+                getActivity().startActivity(intent);
+            }
+        });
+
         return view;
     }
 }
