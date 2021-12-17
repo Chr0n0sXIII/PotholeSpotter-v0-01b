@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "149031111449",
+    "project_id": "pothole-spotter-bf9c7",
+    "storage_bucket": "pothole-spotter-bf9c7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:149031111449:android:fae13e521d7f6d26aa9388",
+        "android_client_info": {
+          "package_name": "com.example.potholespotterse2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "149031111449-96nkgbun312bo56vtjej9v6d0s0f98ga.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDO_i5pLDZfRlPOzDF_2_mgrfH07rmNnvY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "149031111449-96nkgbun312bo56vtjej9v6d0s0f98ga.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

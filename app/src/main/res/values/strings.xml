@@ -1,4 +1,31 @@
 <resources>
     <string name="app_name">PotHole Spotter SE2</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_map">map</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="button_Report_Pothole">Report PotHole</string>
+    <string name="button_Repair_Pothole">Repair PotHole</string>
+    <string name="button_View_Pothole">View PotHole</string>
+    <string name="textView_report_title">Pothole Severity</string>
+    <string name="button_send_report">Report Pothole</string>
+
+    <string name="textView_repair_condition">Repair Condition</string>
+    <string name="radioButton_par_repaired">Partially Repaired</string>
+    <string name="radioButton_full_repaired">Fully Repaired</string>
+    <string name="textView_repair_type">Type of Repair</string>
+    <string name="radioButton_homemade">Homemade</string>
+    <string name="radioButton_pro">Professional</string>
+    <string name="button_send_repair">Submit</string>
 </resources>

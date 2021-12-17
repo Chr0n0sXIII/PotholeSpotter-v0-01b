@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#adadad"
+    tools:context=".Camera_Report">
+
+    <ImageView
+        android:id="@+id/imageView_potHole_Report"
+        android:layout_width="match_parent"
+        android:layout_height="325dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/pothole_temp" />
+
+    <LinearLayout
+        android:background="@drawable/custom_border"
+        android:backgroundTint="@color/white"
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView_report_title"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/textView_report_title" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup_severity"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <RadioButton
+                android:id="@+id/radioButton_green"
+                android:layout_width="33dp"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/imageView_greenSmile"
+                android:scaleType="centerCrop"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/green_smile_s" />
+            <RadioButton
+                android:layout_marginLeft="65dp"
+                android:id="@+id/radioButton_yellow"
+                android:layout_width="33dp"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/imageView_yellowNormal"
+                android:scaleType="centerCrop"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/yellow_normal_s" />
+            <RadioButton
+                android:layout_marginLeft="60dp"
+                android:id="@+id/radioButton_red"
+                android:layout_width="33dp"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/imageView_redSad"
+                android:scaleType="centerCrop"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/red_sad_s" />
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/editText_Report_Description"
+            android:hint="Add a Description"
+            android:layout_width="match_parent"
+            android:layout_height="121dp"
+            android:ems="10" />
+
+        <Button
+            android:id="@+id/button_send_report"
+            android:backgroundTint="@color/Red_Report"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_send_report" />
+
+    </LinearLayout>
+</LinearLayout>
