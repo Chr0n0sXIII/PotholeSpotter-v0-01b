@@ -33,6 +33,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -118,7 +119,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         try {
             List<Address> addresses = geocoder.getFromLocation(latitude,longitude,1);
             Address addressOBJ = addresses.get(0);
-            address = addressOBJ.getAddressLine(0).split(",",2);
+            String[] check = addressOBJ.getAddressLine(0).split(",",2);
+            address[0] = check[0];
             if (addressOBJ.getSubLocality() != null)
                 address[1] = addressOBJ.getSubLocality();
             else
@@ -161,6 +163,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
         mMap.setMyLocationEnabled(true);
         getAllPotholes();
+
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(@NonNull Marker marker) {
+                LatLng latLng = marker.getPosition();
+                getAddress(getApplicationContext(),latLng.latitude,latLng.longitude);
+                address[2] = marker.getTitle();
+                loadFragment(new View_Repair_PotHole());
+                return false;
+            }
+        });
+
     }
 
     private void load_Pothole_Data_From_Database() {
