@@ -27,4 +27,5 @@
     <string name="textView_repair_type">Type of Repair</string>
     <string name="radioButton_homemade">Homemade</string>
     <string name="radioButton_pro">Professional</string>
+    <string name="button_send_repair">Submit</string>
 </resources>
