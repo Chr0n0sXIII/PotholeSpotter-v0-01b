@@ -20,4 +20,11 @@
     <string name="button_View_Pothole">View PotHole</string>
     <string name="textView_report_title">Pothole Severity</string>
     <string name="button_send_report">Report Pothole</string>
+
+    <string name="textView_repair_condition">Repair Condition</string>
+    <string name="radioButton_par_repaired">Partially Repaired</string>
+    <string name="radioButton_full_repaired">Fully Repaired</string>
+    <string name="textView_repair_type">Type of Repair</string>
+    <string name="radioButton_homemade">Homemade</string>
+    <string name="radioButton_pro">Professional</string>
 </resources>

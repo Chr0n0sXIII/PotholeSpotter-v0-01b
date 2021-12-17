@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#adadad"
+    android:layout_height="match_parent"
+    tools:context=".RepairPothole">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageView_potHole_Repair"
+            android:layout_width="match_parent"
+            android:layout_height="431dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/pothole_fix" />
+
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_border"
+            android:backgroundTint="@color/white"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView_repair_condition"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/textView_repair_condition" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup_condition"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <RadioButton
+                    android:id="@+id/radioButton_par_repaired"
+                    android:layout_width="159dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/radioButton_par_repaired" />
+
+                <RadioButton
+                    android:id="@+id/radioButton_full_repaired"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/radioButton_full_repaired" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/textView_repair_type"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/textView_repair_type" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup_repair_type"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <RadioButton
+                    android:id="@+id/radioButton_homemade"
+                    android:layout_width="161dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/radioButton_homemade" />
+
+                <RadioButton
+                    android:id="@+id/radioButton_pro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/radioButton_pro" />
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/button_send_repair"
+                android:backgroundTint="@color/Green_Repair"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/button_send_report" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>
