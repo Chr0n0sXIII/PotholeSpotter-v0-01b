@@ -17,9 +17,9 @@ import org.w3c.dom.Text;
 
 public class ViewPothole extends Fragment {
 
-    MapsActivity m = new MapsActivity();
-    String[] data;
-    PotHole potHole;
+    private MapsActivity m = new MapsActivity();
+    private String[] data;
+    private PotHole potHole;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
