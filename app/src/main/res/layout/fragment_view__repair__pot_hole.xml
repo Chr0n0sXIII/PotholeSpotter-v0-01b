@@ -42,7 +42,7 @@
                     android:text="TextView" />
             </LinearLayout>
             <ImageView
-
+                android:id="@+id/imageView_severity"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:src="@drawable/red_sad">
@@ -59,6 +59,7 @@
 
             <Button
                 android:id="@+id/button_Repair_Pothole"
+                android:textColor="@color/white"
                 android:layout_width="170dp"
                 android:layout_margin="5dp"
                 android:textStyle="bold"
@@ -68,6 +69,7 @@
 
             <Button
                 android:id="@+id/button_View_Pothole"
+                android:textColor="@color/white"
                 android:layout_width="170dp"
                 android:textStyle="bold"
                 android:layout_height="wrap_content"

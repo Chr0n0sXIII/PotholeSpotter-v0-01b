@@ -1,37 +1,40 @@
 package com.example.potholespotterse2;
 
 public class User {
-    private String Name;
-    private String UID;
-    private String Password;
 
-    public  User ( String Name, String UID, String Password){
-        this.Name = Name;
-        this.UID = UID;
-        this.Password = Password;
+    private String email;
+    private String username;
+    private String profilePicture;
+    private String user_id;
+
+    public User(){
+
     }
 
-    public void setUID(String UID) {
-        this.UID = UID;
+    public User(String email, String username, String profilePicture, String user_id){
+        this.email = email;
+        this.username = username;
+        this.profilePicture = profilePicture;
+        this.user_id = user_id;
     }
 
-    public void setName(String name) {
-        Name = name;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPassword(String password) {
-        Password = password;
+    public String getUsername() {
+        return username;
     }
 
-    public String getUID() {
-        return UID;
+    public String getProfilePicture() {
+        return profilePicture;
     }
 
-    public String getName() {
-        return Name;
+    public String getUser_id() {
+        return user_id;
     }
 
-    public String getPassword() {
-        return Password;
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
     }
 }
