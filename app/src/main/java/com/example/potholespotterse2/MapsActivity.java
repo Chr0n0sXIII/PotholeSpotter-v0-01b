@@ -2,6 +2,7 @@ package com.example.potholespotterse2;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -77,7 +78,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         getLocationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getCurrentLocation();
+                Intent intent = new Intent(MapsActivity.this,SecondaryActivity.class);
+                intent.putExtra("key","Profile");
+                MapsActivity.this.startActivity(intent);
             }
         });
         fragment = new Report_Pothole();

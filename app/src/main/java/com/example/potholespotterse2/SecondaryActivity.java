@@ -22,6 +22,8 @@ public class SecondaryActivity extends AppCompatActivity {
             loadFragment(new ViewPothole());
         if (check.equals("Repair"))
             loadFragment(new RepairPothole());
+        if (check.equals("Profile"))
+            loadFragment(new UserProfile());
     }
 
     private void loadFragment(Fragment fragment){
