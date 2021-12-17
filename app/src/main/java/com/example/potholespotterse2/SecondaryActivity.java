@@ -20,6 +20,8 @@ public class SecondaryActivity extends AppCompatActivity {
             loadFragment(new Camera_Report());
         if (check.equals("View"))
             loadFragment(new ViewPothole());
+        if (check.equals("Repair"))
+            loadFragment(new RepairPothole());
     }
 
     private void loadFragment(Fragment fragment){

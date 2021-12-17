@@ -107,7 +107,7 @@ public class Camera_Report extends Fragment {
                                 newPothole = new PotHole(new GeoPoint(latitude,longitude),description.getText().toString(),s,0,-1,-1,null,null);
                                 db.collection("Pothole")
                                         .add(newPothole);
-                                Intent intent = new Intent(getActivity(),SecondaryActivity.class);
+                                Intent intent = new Intent(getActivity(),MapsActivity.class);
                                 getActivity().startActivity(intent);
                             }
                         }

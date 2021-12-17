@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,18 +44,20 @@ public class ViewPothole extends Fragment {
         address.setText(data[1]);
         description.setText(potHole.getDescription());
         reportDate.setText(potHole.getDate_Reported().toString());
-        if (potHole.getRepair_Status() != 0)
+        if (potHole.getRepair_Status() == 1 ){
             repairDate.setText(potHole.getDate_Repaired().toString());
-        else
             repairButton.setText("Already Repaired, Return Home");
+        }
         repairButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (potHole.getRepair_Status() != 0){
-
+                if (potHole.getRepair_Status() == 0){
+                    Intent intent = new Intent(getActivity(),SecondaryActivity.class);
+                    intent.putExtra("key","Repair");
+                    getActivity().startActivity(intent);
                 }
                 else {
-                    Intent intent = new Intent(getActivity(),SecondaryActivity.class);
+                    Intent intent = new Intent(getActivity(),MapsActivity.class);
                     getActivity().startActivity(intent);
                 }
             }
