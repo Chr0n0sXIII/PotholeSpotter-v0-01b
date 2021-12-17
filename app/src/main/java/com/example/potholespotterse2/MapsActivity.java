@@ -3,16 +3,22 @@ package com.example.potholespotterse2;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
@@ -24,15 +30,24 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.PrimitiveIterator;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -41,6 +56,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private FusedLocationProviderClient fusedLocationClient;
     private String[] address = new String[3];
     private Fragment fragment;
+    private PotHole potHole;
+    private ArrayList<PotHole> ph = new ArrayList<>();
+    private int image_icon;
+    FirebaseFirestore db;
 
 
     @Override
@@ -51,6 +70,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(MapsActivity.this);
+        db = FirebaseFirestore.getInstance();
         FloatingActionButton getLocationButton = findViewById(R.id.floatingActionButton_getLocation);
         getLocationButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +101,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     double latitude = location.getLatitude();
                     updateCameraPosition(new LatLng(latitude, longitude), 15f);
                     getAddress(MapsActivity.this,latitude,longitude);
+                    load_Pothole_Data_From_Database();
                     loadFragment(fragment);
                 }
             }
@@ -111,6 +132,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         return address;
     }
 
+    public void getAllPotholes(){
+        db.collection("Pothole").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                for (QueryDocumentSnapshot document : task.getResult()){
+                    ph.add((document.toObject(PotHole.class)));
+                }
+                load_Pothole_Data_From_Database();
+            }
+        });
+    }
+
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -127,7 +160,36 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             return;
         }
         mMap.setMyLocationEnabled(true);
+        getAllPotholes();
     }
+
+    private void load_Pothole_Data_From_Database() {
+        for (int i = 0; i < ph.size(); i++){
+            potHole = ph.get(i);
+            switch (potHole.getSeverity()){
+                case 1:
+                    image_icon = R.drawable.greeny;
+                    break;
+                case 2:
+                    image_icon = R.drawable.yellowy;
+                    break;
+                case 3:
+                    image_icon = R.drawable.redy;
+                    break;
+            }
+            LatLng latLng = new LatLng(potHole.getGeoPoint().getLatitude(),potHole.getGeoPoint().getLongitude());
+            mMap.addMarker(new MarkerOptions().position(latLng).title(potHole.getDescription()).icon(bitmapDescriptor(getApplicationContext(),image_icon)));
+        }
+    }
+
+    private BitmapDescriptor bitmapDescriptor(Context context, int vectorResId){
+        Drawable vectorDrawable = ContextCompat.getDrawable(context,vectorResId);
+        vectorDrawable.setBounds(0,0,vectorDrawable.getIntrinsicWidth(),vectorDrawable.getIntrinsicHeight());
+        Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(),vectorDrawable.getIntrinsicHeight(),Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        vectorDrawable.draw(canvas);
+        return BitmapDescriptorFactory.fromBitmap(bitmap);
+    };
 
     private void loadFragment(Fragment fragment){
         Bundle bundle = new Bundle();

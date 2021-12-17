@@ -96,18 +96,15 @@ public class Camera_Report extends Fragment {
                                 switch (severity.getCheckedRadioButtonId()){
                                     case R.id.radioButton_green:
                                         s = 1;
-                                        severity_Logo = R.drawable.Greeny;
                                         break;
                                     case R.id.radioButton_yellow:
-                                        severity_Logo = R.drawable.Yellowy;
                                         s = 2;
                                         break;
                                     case R.id.radioButton_red:
-                                        severity_Logo = R.drawable.Redy;
                                         s = 3;
                                         break;
                                 }
-                                newPothole = new PotHole(new GeoPoint(latitude,longitude),description.getText().toString(),s,severity_Logo,0,-1,-1,null,null);
+                                newPothole = new PotHole(new GeoPoint(latitude,longitude),description.getText().toString(),s,0,-1,-1,null,null);
                                 db.collection("Pothole")
                                         .add(newPothole);
                             }

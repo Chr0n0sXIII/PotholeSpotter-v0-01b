@@ -16,7 +16,6 @@ public class PotHole {
     private String description;
     //private List<Bitmap> pothole_Image;
     private int severity;
-    private int severity_Logo;
     private int repair_Status;
     private int repair_Condition;
     private int repair_Type;
@@ -28,12 +27,11 @@ public class PotHole {
 
     }
 
-    public PotHole(GeoPoint geoPoint, String description,/* List<Bitmap> pothole_Image,*/ int severity, int severity_Logo, int repair_Status, int repair_Condition, int repair_Type, Date date_Reported, Date date_Repaired){
+    public PotHole(GeoPoint geoPoint, String description,/* List<Bitmap> pothole_Image,*/ int severity, int repair_Status, int repair_Condition, int repair_Type, Date date_Reported, Date date_Repaired){
         this.geoPoint = geoPoint;
         this.description = description;
         //this.pothole_Image = pothole_Image;
         this.severity = severity;
-        this.severity_Logo = severity_Logo;
         this.repair_Status = repair_Status;
         this.repair_Condition = repair_Condition;
         this.repair_Type = repair_Type;
@@ -55,10 +53,6 @@ public class PotHole {
 */
     public int getSeverity() {
         return severity;
-    }
-
-    public int getSeverity_Logo() {
-        return severity_Logo;
     }
 
     public int getRepair_Status() {
