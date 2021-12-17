@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 
@@ -29,6 +30,7 @@ public class View_Repair_PotHole extends Fragment {
         address1.setText(data[0]);
         address2.setText(data[1]);
         description.setText(data[2]);
+
         return view;
     }
 }
